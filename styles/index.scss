@@ -1,0 +1,27 @@
+$color-primary-one: #191d32ff;
+$color-primary-two: #21263bff;
+$color-primary-extra: #282f44ff;
+$color-bg-one: #373547ff;
+$color-secondary: #6c6c6c;
+$color-pop: #841f52ff;
+
+@import "./globals.scss";
+@import "./form.scss";
+@import "./components/Button.scss";
+
+.app {
+    padding: 20px 40px;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .container-title {
+        margin: 0 auto;
+        font-size: 24px;
+        text-align: center;
+    }
+}
