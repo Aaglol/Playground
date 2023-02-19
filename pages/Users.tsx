@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useRequesthandler } from '@/hooks/useRequesthandler';
 
 export const Users = () => {
     
@@ -8,7 +8,7 @@ export const Users = () => {
     useEffect(() => {
         async function fetch() {
             console.log('sending... ');
-            await axios.get('http://localhost:8081/list')
+            await useRequesthandler('http://localhost:8081/', 'user/list', 'GET', {})
             .then((response) => {
                 if (response) {
                     console.log('response: ', response.data);

@@ -2,41 +2,89 @@ import Head from 'next/head';
 import { Users } from './Users';
 import {FormGroup} from '@/components/FormGroup';
 import { Button } from '@/components/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useRequesthandler } from '@/hooks/useRequesthandler';
 
 export default function Home() {
-    interface FormDataTypes { username: '', password: '', email: ''}
-    const formData: FormDataTypes = {username: '', password: '', email: ''}
-    const [formDataFormatted, setFormDataFormatted] = useState<formDataTypes>(formData);
+    interface FormRegisterDataTypes { username: '', password: '', email: ''}
+    const formData: FormRegisterDataTypes = {username: '', password: '', email: ''};
+    const [formDataFormatted, setFormDataFormatted] = useState<FormRegisterDataTypes>(formData);
+    const showRegisterForm: boolean = false;
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    useEffect(() => {
+        async function checkIfLoggedIn() {
+            useRequesthandler('http://localhost:8081/', 'user/isloggedin', 'POST', {}).then((res) => {
+                if (res.status === 200) {
+                    setIsLoggedIn(true);
+                }
+            }).catch((error) => {
+                setIsLoggedIn(false);
+            });
+        }
+
+        checkIfLoggedIn();
+    }, []);
+
+    const handleSubmitRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('hello', formDataFormatted);
-
-        await axios.post('http://localhost:8081/create', formDataFormatted).then((response) => {
-            
-            if (response) {
-                console.log(response);
-            }
-        });
+        if (showRegisterForm) {
+            await useRequesthandler('http://localhost:8081/', 'user/create', 'POST', formDataFormatted).then((response) => {                
+                if (response) {
+                    console.log(response.data);
+                }
+            });
+        } else {
+            await useRequesthandler('http://localhost:8081/', 'user/login', 'POST', formDataFormatted).then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setIsLoggedIn(true);
+                }
+            });
+        }
     };
 
-    const formInputs = [
+    const handleLogOut = async () => {
+        await useRequesthandler('http://localhost:8081/', 'user/logout', 'POST', formDataFormatted).then((response) => {
+            if (response.status === 200) {
+                console.log(response.data);
+                setIsLoggedIn(false);
+            }
+        });
+    }
+
+    const formInputs = showRegisterForm ? [
         {
             title: 'Brukernavn',
             name: 'username',
             type: 'text',
+            attribute: 'username',
         },
         {
             title: 'Passord',
             name: 'password',
             type: 'password',
+            attribute: 'current-password',
         },
         {
             title: 'E-post',
             name: 'email',
             type: 'email',
+            attribute: 'email',
+        },
+    ] : [
+        {
+            title: 'Brukernavn',
+            name: 'username',
+            type: 'text',
+            attribute: 'username',
+        },
+        {
+            title: 'Passord',
+            name: 'password',
+            type: 'password',
+            attribute: 'current-password',
         },
     ];
 
@@ -45,7 +93,7 @@ export default function Home() {
         const newData = {...formDataFormatted, [name]: value};
         console.log(newData);
         setFormDataFormatted(newData);
-    }
+    };
 
     return (
         <>
@@ -57,28 +105,45 @@ export default function Home() {
             </Head>
             <main>
                 <div className="app">
-                    <Users />
                     <div className="container mt-20">
-                        <form className="form bg-dark" onSubmit={(e) => handleSubmit(e)}>
-                            <div className="form-title">
-                                Registrer ny bruker
+                        {isLoggedIn ? (
+                            <div className="container"> 
+                                <div className="container-title">
+                                    Du er nå logget inn! {formDataFormatted.username}
+                                </div>
+                                <div className="mx-auto mt-20">
+                                    <Button
+                                        title="Logg ut"
+                                        onClick={handleLogOut}
+                                        type="success"
+                                    />
+                                </div>
                             </div>
-                            {formInputs.map((input, key) => (
-                                <FormGroup
-                                    title={input.title}
-                                    name={input.name}
-                                    type={input.type}
-                                    key={key}
-                                    inputOnChange={inputOnChange}
-                                />
-                            ))}
+                        ) : (
+                            <form className="form bg-dark" onSubmit={(e) => handleSubmitRegister(e)}>
+                                <div className="form-title">
+                                    {showRegisterForm ? 'Logg inn' : 'Registrer'}
+                                </div>
+                                {formInputs.map((input, key) => (
+                                    <FormGroup
+                                        data={input}
+                                        key={key}
+                                        inputOnChange={inputOnChange}
+                                    />
+                                ))}
 
-                            <FormGroup
-                                title=''
-                                name='submit'
-                                type='submit'
-                            />
-                        </form>
+                                <FormGroup
+                                    data={{
+                                        title: '',
+                                        name: 'submit',
+                                        type: 'submit',
+                                        attribute: '',
+                                    }}
+                                    inputOnChange={() => {}}
+                                />
+                            </form>
+                        )}
+                        
                     </div>
                 </div>
             </main>
