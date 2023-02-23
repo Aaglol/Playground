@@ -10,5 +10,7 @@ if (process.env.NODE_ENV === "development") {
 
 export const store = configureStore({
     reducer: reducers,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false,
+    }).concat(middleware),
 });

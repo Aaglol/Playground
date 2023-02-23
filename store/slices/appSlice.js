@@ -1,45 +1,85 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import {requestHandler} from '@/hooks/useRequesthandler';
+import { useRequesthandler } from '@/hooks/useRequesthandler';
 
-export const fetchStoreInfo = createAsyncThunk(
-    "app/fetchStoreInfo",
-    async () => {
-        const response = await requestHandler('/kontrollpanel/rest/pos/hello');
-        if (typeof response !== "undefined") {
-            const returnArray = {
-                response: response.data,
-                isLoggedIn: response.request.responseURL.indexOf("/kontrollpanel/rest/pos/hello") !== -1,
-            };
+export const userLogin = createAsyncThunk(
+    "app/userLogin",
+    async (data) => {
+        const response = await useRequesthandler('http://localhost:8081/', 'user/login', 'POST', data).catch((error) => {
+            console.warn('oh no');
+        });
 
-            return returnArray;
+        if (response.status === 200) {
+            return response.data?.data;
         }
+    },
+);
 
-        throw new Error("Failed to fetch store info");
+export const userSessionCheck = createAsyncThunk(
+    "app/userSessionCheck",
+    async () => {
+        const response = await useRequesthandler('http://localhost:8081/', 'user/isloggedin', 'POST', {}).catch((error) => {
+            console.warn('oh no');
+        });
+
+        console.log('response', response);
+
+        if (response.status === 200) {
+            return response.data?.data;
+        }
+    },
+);
+
+export const userLogOut = createAsyncThunk(
+    "app/userLogOut",
+    async () => {
+        const response = await useRequesthandler('http://localhost:8081/', 'user/logout', 'POST', {}).catch((error) => {
+            console.warn('oh no');
+        });
+
+        if (response.status === 200) {
+            return response.data;
+        }
     },
 );
 
 const initialState = {
     isLoggedIn: false,
+    currentUser: {
+        id: 0,
+        username: '',
+        email: '',
+    }
 };
 
 export const appSlice = createSlice({
     name: "app",
     initialState,
-    extraReducers: {
-
+    extraReducers: (builder) => {
+        builder.addCase(userSessionCheck.fulfilled, (state, action) => {
+            state.isLoggedIn = true;
+            console.log('action', action);
+            if (Object.hasOwnProperty.call(action.payload, 'id')) {
+                state.currentUser = action.payload;
+            }
+        });
     },
     reducers: {
         isLoggedInUpdated: (state, action) => {
             state.isLoggedIn = action.payload;
         },
+        currentUserUpdated: (state, action) => {
+            state.currentUser = action.payload;
+        }
     },
 });
 
 export const {
     isLoggedInUpdated,
+    currentUserUpdated,
 } = appSlice.actions;
 
 export default appSlice;
 
 export const appIsLoggedIn = (state) => state.app.isLoggedIn;
+export const appCurrentUser = (state) => state.app.currentUser;

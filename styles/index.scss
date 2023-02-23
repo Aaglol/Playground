@@ -1,17 +1,22 @@
-$color-primary-one: #191d32ff;
-$color-primary-two: #21263bff;
-$color-primary-extra: #282f44ff;
-$color-bg-one: #373547ff;
-$color-secondary: #6c6c6c;
-$color-pop: #841f52ff;
+$color-secondary: #fff;
+$color-primary: #0597F2;
+$color-bg: #024873;
+$color-bg-dark: #012840;
+$color-dark: #0D0D0D;
 
 @import "./globals.scss";
 @import "./form.scss";
 @import "./components/Button.scss";
+@import "./components/TabHeader.scss";
+@import "./layout/AppHeader.scss";
 
 .app {
     padding: 20px 40px;
     width: 100%;
+    font-family: sans-serif;
+    background-color: $color-bg-dark;
+    height: 100vh;
+    color: $color-secondary;
 }
 
 .container {
@@ -24,4 +29,12 @@ $color-pop: #841f52ff;
         font-size: 24px;
         text-align: center;
     }
+}
+
+hr {
+    color: $color-secondary;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    height: 1px;
 }
