@@ -1,21 +1,19 @@
-import { AppBody } from "@/components/layout/AppBody"
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
+
+import { AppBody } from "@/components/layout/AppBody"
 import { appCurrentUser } from "@/store/slices/appSlice"
 import { TabHeader } from "@/components/TabHeader";
 import { profileCurrentTabUpdated, profileCurrentTab } from "@/store/slices/profileSlice";
-import { useEffect, useState } from "react";
 
 export const UserIndex = () => {
 
     const disatch = useDispatch();
 
     const currentUser = useSelector(appCurrentUser);
-    const activeTab = useSelector(profileCurrentTab)
-    console.log('currentUser', currentUser);
+    const activeTab = useSelector(profileCurrentTab);
 
     useEffect(() => {
-
-
         return () => {
             handleChangeProfileTab(0);
         }
@@ -34,13 +32,17 @@ export const UserIndex = () => {
             title: 'Innstillinger',
             id: 1,
         },
+        {
+            title: 'Koblinger',
+            id: 2,
+        },
     ];
 
     return ( 
         <AppBody>
             <div className="container">
                 <div className="container-title">
-                    {currentUser.username} . dsad
+                    {currentUser.username}
                 </div>
                 <div className="mt-20 flex justify-content-center py-20">
                     <TabHeader

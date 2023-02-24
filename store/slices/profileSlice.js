@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const profileSlice = createSlice({
-    name: "app",
+    name: "profile",
     initialState,
     reducers: {
         profileCurrentTabUpdated: (state, action) => {
@@ -23,4 +23,4 @@ export const {
 
 export default profileSlice;
 
-export const profileCurrentTab = (state) => state.app.currentTab;
+export const profileCurrentTab = (state) => state.profile.currentTab;
