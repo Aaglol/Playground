@@ -1,55 +1,56 @@
 import { useSelector } from 'react-redux';
 
 import { appIsLoggedIn } from '@/store/slices/appSlice';
-import { Button } from '../Button';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export const AppHeader = () => {
     const [currentUrl, setCurrentUrl] = useState('');
+    const [isReady, setIsReady] = useState(false);
 
     const loggedIn = useSelector(appIsLoggedIn);
     
     useEffect(() => {
-        console.log('current: ', window);
         if (window) {
             setCurrentUrl(window.location.href);
+            setIsReady(true);
         }
     }, []);
 
-    return (
+    return isReady && (
         <div className="appHeader">
             <div className="headerTop">
                 <div className="headerLogo">
                     <a href="/">PLAYGROUND</a>
                 </div>
                 <div className="headerRight">
-                    <a 
+                    <Link 
                         className={currentUrl === '' ? ' active' : ''} 
                         href="/"
                     >
                         Hjem
-                    </a>
-                    <a 
+                    </Link>
+                    <Link
                         className={currentUrl === '/about' ? ' active' : ''} 
                         href="/about"
                     >
                         Om
-                    </a>
+                    </Link>
                     {loggedIn && (
-                        <a 
+                        <Link 
                             className={currentUrl === '/user' ? ' active' : ''} 
                             href="/user"
                         >
                             Profil
-                        </a>
+                        </Link>
                     )}
                     {loggedIn && (
-                        <a 
+                        <Link
                             className={currentUrl === '/user/logout' ? ' active' : ''} 
                             href="/user/logout"
                         >
                             Logg ut
-                        </a>
+                        </Link>
                     )}
                 </div>
             </div>

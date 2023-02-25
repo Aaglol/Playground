@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { AppBody } from '@/components/layout/AppBody';
 
 export default function Frontpage() {
