@@ -1,4 +1,4 @@
-import { store } from "@/store";
+import store from "@/store";
 import { userSessionCheck, userLogOut, isLoggedInUpdated } from "@/store/slices/appSlice";
 
 export async function checkIfLoggedIn() {

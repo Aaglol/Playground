@@ -22,12 +22,20 @@
     margin-left: 20px;
 }
 
+.ml-30 {
+    margin-left: 30px;
+}
+
 .mr-10 {
     margin-right: 10px;
 }
 
 .mr-20 {
     margin-right: 20px;
+}
+
+.mr-30 {
+    margin-right: 30px;
 }
 
 .pr-10 {
@@ -87,4 +95,8 @@
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.b-l-1 {
+    border-left: 1px solid $color-secondary;
 }

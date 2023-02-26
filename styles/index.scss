@@ -10,7 +10,7 @@ $color-dark: #0D0D0D;
 @import "./components/TabHeader.scss";
 @import "./layout/AppHeader.scss";
 
-.app {
+.app, .loading-page {
     padding: 20px 40px;
     width: 100%;
     font-family: sans-serif;

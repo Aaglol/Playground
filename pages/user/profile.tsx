@@ -9,6 +9,8 @@ import { Button } from "@/components/Button";
 import { useRequesthandler } from "@/hooks/useRequesthandler";
 import { handleNavigationCheck } from '@/utils/helpers/routes';
 
+export const PAGE_USER_PROFILE = 'PAGE_USER_PROFILE';
+
 export const UserProfile = () => {
 
     const disatch = useDispatch();
@@ -51,7 +53,7 @@ export const UserProfile = () => {
     ];
 
     return ( 
-        <AppBody>
+        <AppBody page={PAGE_USER_PROFILE}>
             <div className="container">
                 <div className="container-title">
                     {currentUser.username}

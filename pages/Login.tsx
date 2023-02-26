@@ -9,6 +9,8 @@ import { checkIfLoggedIn } from '@/utils/helpers/auth';
 import { AppBody } from '@/components/layout/AppBody';
 import { Button } from '@/components/Button';
 
+export const PAGE_LOGIN = 'PAGE_LOGIN';
+
 export default function Login() {
     interface FormRegisterDataTypes { username: 'Robin', password: '', email: ''}
 
@@ -73,7 +75,7 @@ export default function Login() {
     };
 
     return (
-        <AppBody page='Forside'>
+        <AppBody page={PAGE_LOGIN}>
             <div className="container">
                 <form className="form bg-dark" onSubmit={(e) => handleSubmitRegister(e)}>
                     <div className="form-title">

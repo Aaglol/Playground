@@ -1,12 +1,17 @@
 import { AppBody } from '@/components/layout/AppBody';
 
+export const PAGE_FRONTPAGE = 'PAGE_FRONTPAGE';
+
 export default function Frontpage() {
 
     return (
-        <AppBody page='Forside'>
+        <AppBody page={PAGE_FRONTPAGE}>
             <div className="container"> 
                 <div className="container-title">
-                    Du er nå logget inn!
+                    Playground
+                </div>
+                <div className="mt-20 text-center">
+                    En forside historie
                 </div>
             </div>
         </AppBody>

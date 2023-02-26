@@ -2,7 +2,9 @@ import { AppBody } from '@/components/layout/AppBody';
 import { useEffect } from 'react';
 import Router from 'next/router';
 
-export default function NotFound() {
+export const PAGE_REDIRECT = 'PAGE_REDIRECT';
+
+export default function Redirect() {
 
     useEffect(() => {
         setTimeout(() => {
@@ -11,7 +13,7 @@ export default function NotFound() {
     }, []);
 
     return (
-        <AppBody page='Forside'>
+        <AppBody page={PAGE_REDIRECT}>
             <div className="container">
                 <div className="container-title">
                     Ikke tillat, omdirigerer til forsiden.

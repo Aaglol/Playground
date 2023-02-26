@@ -81,5 +81,5 @@ export const {
 
 export default appSlice;
 
-export const appIsLoggedIn = (state) => state.app.isLoggedIn;
-export const appCurrentUser = (state) => state.app.currentUser;
+export const appIsLoggedIn = (state) => state.app?.isLoggedIn;
+export const appCurrentUser = (state) => state.app?.currentUser;

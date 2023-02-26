@@ -6,18 +6,16 @@ import Link from 'next/link';
 
 export const AppHeader = () => {
     const [currentUrl, setCurrentUrl] = useState('');
-    const [isReady, setIsReady] = useState(false);
 
     const loggedIn = useSelector(appIsLoggedIn);
     
     useEffect(() => {
         if (window) {
             setCurrentUrl(window.location.href);
-            setIsReady(true);
         }
     }, []);
 
-    return isReady && (
+    return (
         <div className="appHeader">
             <div className="headerTop">
                 <div className="headerLogo">
