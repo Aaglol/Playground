@@ -16,13 +16,21 @@ export const userLogOut = createAsyncThunk(
     },
 );
 
+interface User {
+    id: number
+    username: string
+    email: string
+}
+
+const intialUser: User = {
+    id: 0,
+    username: '',
+    email: '',
+}
+
 const initialState = {
     isLoggedIn: false,
-    currentUser: {
-        id: 0,
-        username: '',
-        email: '',
-    }
+    currentUser: intialUser
 };
 
 export const appSlice = createSlice({
@@ -30,15 +38,16 @@ export const appSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder.addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
-            state.currentUser = action.payload;
+            state.currentUser = action.payload.data;
             state.isLoggedIn = true;
         }); 
         builder.addMatcher(userApi.endpoints.isLoggedIn.matchFulfilled, (state, action) => {
-            state.isLoggedIn = true;
-            console.log('action', action);
-            if (Object.hasOwnProperty.call(action.payload, 'id')) {
-                state.currentUser = action.payload;
-            }
+            state.isLoggedIn = true;            
+            state.currentUser = action.payload.data;
+        });
+        builder.addMatcher(userApi.endpoints.logout.matchFulfilled, (state, action) => {
+            state.isLoggedIn = false;
+            state.currentUser = intialUser;
         });
     },
     reducers: {

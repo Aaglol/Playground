@@ -1,11 +1,14 @@
 import { AppBody } from "@/components/layout/AppBody"
 import { useEffect } from "react"
-import { logOut } from "@/utils/helpers/auth";
+import { useLogoutMutation } from "@/store/services/user";
 
 export const Logout = () => {
 
+    const [logout] = useLogoutMutation();
+
     useEffect(() => {
-        logOut();
+        const handleLogout = async () => await logout().unwrap();
+        handleLogout();
         window.location.href = "/";
     }, []);
 

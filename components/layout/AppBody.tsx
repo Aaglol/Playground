@@ -4,11 +4,15 @@ import { useEffect } from "react";
 import { useIsLoggedInQuery } from "@/store/services/user";
 
 export const AppBody = ({page = '', children}) => {
-    const { data, isLoading } = useIsLoggedInQuery()
+    const { data, isLoading, isFetching } = useIsLoggedInQuery({
+        pollingInterval: 3000,
+        refetchOnMountOrArgChange: true,
+        skip: false,
+      });
 
     useEffect(() => {
-        console.log('query data: ', data);
-    }, [isLoading]);
+        console.log('query data: ', data, isFetching);
+    }, [isFetching]);
 
     return (
         <div className="app">
