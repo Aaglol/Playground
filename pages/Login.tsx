@@ -13,18 +13,13 @@ export default function Login() {
     const formData: FormRegisterDataTypes = {username: 'Robin', password: '', email: ''};
     const [formDataFormatted, setFormDataFormatted] = useState<FormRegisterDataTypes>(formData);
 
-    const [
-        loginUser,
-        {isLoading},
-    ] = useLoginMutation();
+    const [login] = useLoginMutation();
 
     const handleSubmitRegister: React.FormEventHandler<HTMLFormElement> = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log('loginUser', isLoading);
-
         try {
-            await loginUser(formDataFormatted).unwrap();
+            await login(formDataFormatted).unwrap();
         } catch (e) {
             console.log('failed', e);
         }
