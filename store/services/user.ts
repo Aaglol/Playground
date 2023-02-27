@@ -9,14 +9,18 @@ export const userApi = CommunicationApi.injectEndpoints({
                 body,
             }),
         }),
+        isLoggedIn: build.query({
+            query: () => '/user/isloggedin',
+        })
     }),
     overrideExisting: false,
 });
 
 export const {
     useLoginMutation,
+    useIsLoggedInQuery,
 } = userApi;
 
 export const {
-    endpoints: { login },
+    endpoints: { login, isLoggedIn },
 } = userApi;

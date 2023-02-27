@@ -36,9 +36,7 @@ const reducers = combineReducers({
    
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-let preStore;
-
-preStore = configureStore({
+const preStore = configureStore({
     reducer: persistedReducer,
     middleware:  getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: false,

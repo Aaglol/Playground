@@ -3,34 +3,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useRequesthandler } from '@/hooks/useRequesthandler';
 import { userApi } from "../services/user";
 
-export const userLogin = createAsyncThunk(
-    "app/userLogin",
-    async (data) => {
-        const response = await useRequesthandler('http://localhost:8081/', 'user/login', 'POST', data).catch((error) => {
-            console.warn('oh no');
-        });
-
-        if (response.status === 200) {
-            return response.data?.data;
-        }
-    },
-);
-
-export const userSessionCheck = createAsyncThunk(
-    "app/userSessionCheck",
-    async () => {
-        const response = await useRequesthandler('http://localhost:8081/', 'user/isloggedin', 'POST', {}).catch((error) => {
-            console.warn('oh no');
-        });
-
-        console.log('response', response);
-
-        if (response.status === 200) {
-            return response.data?.data;
-        }
-    },
-);
-
 export const userLogOut = createAsyncThunk(
     "app/userLogOut",
     async () => {
@@ -57,24 +29,17 @@ export const appSlice = createSlice({
     name: "app",
     initialState,
     extraReducers: (builder) => {
-        builder.addCase(userSessionCheck.fulfilled, (state, action) => {
+        builder.addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
+            state.currentUser = action.payload;
+            state.isLoggedIn = true;
+        }); 
+        builder.addMatcher(userApi.endpoints.isLoggedIn.matchFulfilled, (state, action) => {
             state.isLoggedIn = true;
             console.log('action', action);
             if (Object.hasOwnProperty.call(action.payload, 'id')) {
                 state.currentUser = action.payload;
             }
         });
-
-        builder.addMatcher(userApi.endpoints.login.matchPending, (state, action) => {
-            console.log('hello');
-        }); 
-        builder.addMatcher(userApi.endpoints.login.matchRejected, (state, action) => {
-            console.log('dsadai');
-        }); 
-        builder.addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
-            state.currentUser = action.payload;
-            state.isLoggedIn = true;
-        }); 
     },
     reducers: {
         isLoggedInUpdated: (state, action) => {

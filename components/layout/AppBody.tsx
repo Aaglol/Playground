@@ -1,19 +1,14 @@
 import { AppHeader } from "./AppHeader"
 import Head from "next/head";
-import { useEffect, useRef } from "react";
-import { checkIfLoggedIn } from "@/utils/helpers/auth";
+import { useEffect } from "react";
+import { useIsLoggedInQuery } from "@/store/services/user";
 
 export const AppBody = ({page = '', children}) => {
-    
-    const hasConfirmed = useRef(false);
+    const { data, isLoading } = useIsLoggedInQuery()
 
     useEffect(() => {
-        if (!hasConfirmed.current) {
-            checkIfLoggedIn();
-
-            hasConfirmed.current = true;
-        }
-    }, []);
+        console.log('query data: ', data);
+    }, [isLoading]);
 
     return (
         <div className="app">
