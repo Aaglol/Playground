@@ -72,7 +72,8 @@ export const appSlice = createSlice({
             console.log('dsadai');
         }); 
         builder.addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
-            state.currentUser = action.payload; 
+            state.currentUser = action.payload;
+            state.isLoggedIn = true;
         }); 
     },
     reducers: {
