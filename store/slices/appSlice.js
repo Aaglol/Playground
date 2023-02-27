@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { useRequesthandler } from '@/hooks/useRequesthandler';
+import { userApi } from "../services/user";
 
 export const userLogin = createAsyncThunk(
     "app/userLogin",
@@ -63,6 +64,16 @@ export const appSlice = createSlice({
                 state.currentUser = action.payload;
             }
         });
+
+        builder.addMatcher(userApi.endpoints.login.matchPending, (state, action) => {
+            console.log('hello');
+        }); 
+        builder.addMatcher(userApi.endpoints.login.matchRejected, (state, action) => {
+            console.log('dsadai');
+        }); 
+        builder.addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
+            state.currentUser = action.payload; 
+        }); 
     },
     reducers: {
         isLoggedInUpdated: (state, action) => {

@@ -1,20 +1,25 @@
-import { FunctionComponent } from "react"
+import Link from "next/link";
 
 
 export const TabHeader = ({
-    items, handleOnClick, isActive
+    items
 }) => (
     <div>
         <div className="tab-header"> 
-            {items.map((item, key) => (
-                <div 
-                    className={`tab-header-item cursor-pointer ${isActive === item.id ? 'active' : ''}`} 
-                    onClick={() => handleOnClick(item.id)}
+            {items.map((item, key) => {
+                let isActive = false;
+                if (typeof window !== 'undefined') {
+                    window.location.pathname;
+                }
+                return (
+                <Link 
+                    className={`tab-header-item cursor-pointer ${isActive === item.href ? 'active' : ''}`} 
+                    href={item.href}
                     key={key}
                 >
                     {item.title}
-                </div>
-            ))}
+                </Link>
+            )})}
 
         </div>
         <hr />

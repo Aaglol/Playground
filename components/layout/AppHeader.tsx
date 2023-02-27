@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { appIsLoggedIn } from '@/store/slices/appSlice';
+import { appIsLoggedIn, appCurrentUser } from '@/store/slices/appSlice';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -8,12 +8,13 @@ export const AppHeader = () => {
     const [currentUrl, setCurrentUrl] = useState('');
 
     const loggedIn = useSelector(appIsLoggedIn);
-    
+    const currentUser = useSelector(appCurrentUser);
+    const pathname = typeof window !== 'undefined' && window.location.pathname;
     useEffect(() => {
         if (window) {
-            setCurrentUrl(window.location.href);
+            setCurrentUrl(window.location.pathname);
         }
-    }, []);
+    }, [pathname]);
 
     return (
         <div className="appHeader">
@@ -23,7 +24,7 @@ export const AppHeader = () => {
                 </div>
                 <div className="headerRight">
                     <Link 
-                        className={currentUrl === '' ? ' active' : ''} 
+                        className={currentUrl === '/' ? ' active' : ''} 
                         href="/"
                     >
                         Hjem
@@ -36,10 +37,10 @@ export const AppHeader = () => {
                     </Link>
                     {loggedIn && (
                         <Link 
-                            className={currentUrl === '/user' ? ' active' : ''} 
+                            className={currentUrl.indexOf('/user') > -1 ? ' active' : ''} 
                             href="/user"
                         >
-                            Profil
+                            {currentUser.username}
                         </Link>
                     )}
                     {loggedIn && (
