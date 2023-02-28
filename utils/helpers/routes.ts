@@ -2,7 +2,7 @@ import router from 'next/router';
 import store from '@/store';
 
 export function handleNavigationCheck() {
-    if (typeof window === undefined) {
+    if (typeof window === 'undefined') {
         return;
     }
 
@@ -16,5 +16,4 @@ export function handleNavigationCheck() {
 
     console.log('currentUrl', currentUrl, ' isLoggedIn: ', isLoggedIn);
     return true;
-    
 }

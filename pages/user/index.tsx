@@ -1,8 +1,7 @@
-import { UserProfile } from "./profile";
 import { useEffect } from "react";
 import Router from "next/router";
-import { handleNavigationCheck } from '@/utils/helpers/routes';
 import store from '@/store/index';
+import { UserProfile } from "./profile";
 
 export async function getStaticProps() {
 
@@ -16,9 +15,6 @@ export async function getStaticProps() {
 export const UserIndex = () => {
 
     useEffect(() => {
-        if (!handleNavigationCheck()) {
-            return;    
-        }
         Router.push('/user/profile');
     }, []);
 

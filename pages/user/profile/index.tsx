@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { AppBody } from "@/components/layout/AppBody"
 import { appCurrentUser } from "@/store/slices/appSlice"
 import { TabHeader } from "@/components/TabHeader";
-import { handleNavigationCheck } from '@/utils/helpers/routes';
+import { ProfileHeader } from "@/components/layout/profile/ProfileHeader";
 
 export const PAGE_USER_PROFILE = 'PAGE_USER_PROFILE';
 
@@ -13,10 +13,6 @@ export const UserProfile = () => {
     const disatch = useDispatch();
 
     const currentUser = useSelector(appCurrentUser);
-
-    useEffect(() => {
-        handleNavigationCheck();
-    }, []);
 
     const profileTabs = [
         {
@@ -36,15 +32,12 @@ export const UserProfile = () => {
     return ( 
         <AppBody page={PAGE_USER_PROFILE}>
             <div className="container">
-                <div className="container-title">
-                    {currentUser.username}
-                </div>
-                <div className="mt-20 py-20">
-                    <div className="flex justify-content-center">
-                        <TabHeader
-                            items={profileTabs}
-                        />
-                    </div>
+                <ProfileHeader page='Profil' />
+
+                <hr />
+
+                <div>
+
                 </div>
             </div>
         </AppBody>

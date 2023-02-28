@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { AppBody } from "@/components/layout/AppBody"
 import { appCurrentUser } from "@/store/slices/appSlice"
 import { useRouter } from "next/router";
+import { ProfileHeader } from "@/components/layout/profile/ProfileHeader";
 
 export const UserProfile = () => {
 
@@ -17,12 +18,13 @@ export const UserProfile = () => {
     return ( 
         <AppBody>
             <div className="container">
-                <div className="container-title text-left">
-                    {currentUser.username}
-                </div>
-                <div className="mt-20 py-20">
-                    Hello
-                </div>
+            <ProfileHeader page='Profil' />
+
+            <hr />
+
+            <div>
+                
+            </div>
             </div>
         </AppBody>
     )

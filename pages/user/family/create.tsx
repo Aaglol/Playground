@@ -1,22 +1,8 @@
-import { useEffect, FormEvent } from "react";
-import { useSelector, useDispatch } from "react-redux"
-
-import { appCurrentUser } from "@/store/slices/appSlice"
-import { profileCurrentTab } from "@/store/slices/profileSlice";
-
-import { handleNavigationCheck } from '@/utils/helpers/routes';
 import { FormGroup } from "@/components/FormGroup";
+import { ProfileHeader } from "@/components/layout/profile/ProfileHeader";
 
 export const UserProfile = () => {
 
-    const disatch = useDispatch();
-
-    const currentUser = useSelector(appCurrentUser);
-    const activeTab = useSelector(profileCurrentTab);
-
-    useEffect(() => {
-        handleNavigationCheck();
-    }, []);
 
     const handleCreateFamily = async (e: any) => {
         if (!e) {
@@ -50,6 +36,9 @@ export const UserProfile = () => {
 
     return ( 
         <div className="py-20">
+            <ProfileHeader page='profile' />
+
+            <hr />
             <form onClick={(e) => handleCreateFamily(e)}>
                 {formInputs.map((input, key) => 
                     <FormGroup

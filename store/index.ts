@@ -17,14 +17,13 @@ const reducers = combineReducers({
     profile: profileSlice.reducer,
     api: CommunicationApi.reducer,
 });
-   
 
-let preStore = configureStore({
-        reducer: reducers,
-        middleware:  getDefaultMiddleware => getDefaultMiddleware({
-            serializableCheck: false,
-        }).concat(customMiddleware),
-    });
+const preStore = configureStore({
+    reducer: reducers,
+    middleware:  getDefaultMiddleware => getDefaultMiddleware({
+        serializableCheck: false,
+    }).concat(customMiddleware),
+});
 
 export type AppDispatch = typeof preStore.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;

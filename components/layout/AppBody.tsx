@@ -2,17 +2,22 @@ import { AppHeader } from "./AppHeader"
 import Head from "next/head";
 import { useEffect } from "react";
 import { useIsLoggedInQuery } from "@/store/services/user";
+import { handleNavigationCheck } from "@/utils/helpers/routes";
 
 export const AppBody = ({page = '', children}) => {
-    const { data, isLoading, isFetching } = useIsLoggedInQuery({
-        pollingInterval: 3000,
+    const { data, isLoading, isFetching, isSuccess } = useIsLoggedInQuery({
+        pollingInterval: 30,
         refetchOnMountOrArgChange: true,
         skip: false,
-      });
+    });
 
     useEffect(() => {
-        console.log('query data: ', data, isFetching);
-    }, [isFetching]);
+        console.log('query data: ', data, isFetching, isLoading);
+        if (!isFetching && !isSuccess) {
+            console.log('no success: ', isFetching, isSuccess);
+            handleNavigationCheck();
+        }
+    }, [isFetching, isLoading, isSuccess]);
 
     return (
         <div className="app">
@@ -22,13 +27,15 @@ export const AppBody = ({page = '', children}) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="App">
-                <AppHeader />
+            
+                <main className="App">
+                    <AppHeader />
 
-                <div>
-                    {children}
-                </div>
-            </main>
+                    <div className="app-body">
+                        {!isFetching && children}
+                    </div>
+                </main>
+            
         </div>
     );
 }
