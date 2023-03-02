@@ -8,6 +8,7 @@ $color-dark: #0D0D0D;
 @import "./form.scss";
 @import "./components/Button.scss";
 @import "./components/TabHeader.scss";
+@import "./components/Dropdown.scss";
 @import "./layout/AppHeader.scss";
 
 .app, .loading-page {
@@ -23,11 +24,34 @@ $color-dark: #0D0D0D;
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 20px;
+
+    &.with-border {
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+    }
 
     .container-title {
         margin: 0 auto;
         font-size: 24px;
-        text-align: center;
+        width: 100%;
+    }
+
+    .container-content {
+        margin-top: 20px;
+
+        &.two-sided {
+            display: flex;
+        }
+
+        .container-split {
+            width: 50%;
+        }
+
+        .container-box {
+            max-height: 350px;
+            overflow-y: auto;
+        }
     }
 }
 

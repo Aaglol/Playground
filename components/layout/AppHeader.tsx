@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { appIsLoggedIn, appCurrentUser } from '@/store/slices/appSlice';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Dropdown, Item } from '../Dropdown';
 
 export const AppHeader = () => {
     const [currentUrl, setCurrentUrl] = useState('');
@@ -10,6 +11,22 @@ export const AppHeader = () => {
     const loggedIn = useSelector(appIsLoggedIn);
     const currentUser = useSelector(appCurrentUser);
     const pathname = typeof window !== 'undefined' && window.location.pathname;
+    
+    const dropdownItems: Array<Item> = [
+        {
+            name: 'Familie',
+            href: '/user/family',
+        },
+        {
+            name: 'Innstillinger',
+            href: '/user/settings',
+        },
+        {
+            name: 'Logg ut',
+            href: '/user/logout',
+        }
+    ];
+    
     useEffect(() => {
         if (window) {
             setCurrentUrl(window.location.pathname);
@@ -20,36 +37,31 @@ export const AppHeader = () => {
         <div className="appHeader">
             <div className="headerTop">
                 <div className="headerLogo">
-                    <a href="/">PLAYGROUND</a>
+                    <Link href="/">PLAYGROUND</Link>
                 </div>
                 <div className="headerRight">
-                    <Link 
-                        className={currentUrl === '/' ? ' active' : ''} 
-                        href="/"
-                    >
-                        Hjem
-                    </Link>
-                    <Link
-                        className={currentUrl === '/about' ? ' active' : ''} 
-                        href="/about"
-                    >
-                        Om
-                    </Link>
-                    {loggedIn && (
+                    <div>
                         <Link 
-                            className={currentUrl.indexOf('/user') > -1 ? ' active' : ''} 
-                            href="/user"
+                            className={currentUrl === '/' ? ' active' : ''} 
+                            href="/"
                         >
-                            {currentUser.username}
+                            Hjem
                         </Link>
-                    )}
-                    {loggedIn && (
+                    </div>
+                    <div>
                         <Link
-                            className={currentUrl === '/user/logout' ? ' active' : ''} 
-                            href="/user/logout"
+                            className={currentUrl === '/about' ? ' active' : ''} 
+                            href="/about"
                         >
-                            Logg ut
+                            Om
                         </Link>
+                    </div>
+                    {loggedIn && (
+                        <Dropdown 
+                            buttonText={loggedIn ? currentUser.username : 'Logg inn'}
+                            items={dropdownItems}
+                            isActive={currentUrl}
+                        />
                     )}
                 </div>
             </div>

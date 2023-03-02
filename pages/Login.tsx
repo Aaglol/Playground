@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { AppBody } from '@/components/layout/AppBody';
 import { Button } from '@/components/Button';
 import { useLoginMutation } from '@/store/services/user';
+import { FormRegisterDataTypes } from '@/store/types';
 
 export const PAGE_LOGIN = 'PAGE_LOGIN';
 
-export default function Login() {
-    interface FormRegisterDataTypes { username: 'Robin', password: '', email: ''}
+export default function Login() { 
     
     const formData: FormRegisterDataTypes = {username: 'Robin', password: '', email: ''};
     const [formDataFormatted, setFormDataFormatted] = useState<FormRegisterDataTypes>(formData);

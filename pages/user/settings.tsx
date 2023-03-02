@@ -1,14 +1,14 @@
 import { AppBody } from "@/components/layout/AppBody"
 
-export const PAGE_USER_PROFILE = 'PAGE_USER_PROFILE';
+export const PAGE_USER_SETTINGS = 'PAGE_USER_SETTINGS';
 
 export const UserProfile = () => {
 
     return ( 
-        <AppBody page={PAGE_USER_PROFILE}>
+        <AppBody page={PAGE_USER_SETTINGS}>
             <div className="container">
                 <div>
-                    Hello
+                    Innstillinger
                 </div>
             </div>
         </AppBody>
