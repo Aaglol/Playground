@@ -1,0 +1,49 @@
+@keyframes rotate {
+    0% {  transform: rotate(0)}
+    100% { transform: rotate(360deg)}
+}
+
+@keyframes typing {
+    from {
+        color: rgba(117, 114, 114, 0.3)
+    }
+    to {
+        color: rgba(255, 255, 255, 0.8)
+    }
+}
+
+.playground-loader-container {
+    
+    .playground-loader {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .mx-auto.flex {
+        font-size: 24px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .playground-loader-text {
+        width: 300px;
+        text-align: center;
+        color: $color-secondary;
+        animation: typing 3.4s steps(20, end) infinite;
+    }
+    
+    .playground-loader:before , .playground-loader:after{
+        content: '';
+        border-radius: 50%;
+        position: absolute;
+        inset: 0;
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset;
+    }
+    .playground-loader:after {
+        box-shadow: 0 2px 0 $color-primary inset;
+        animation: rotate 2s linear infinite;
+    }
+
+}

@@ -1,26 +1,24 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-import { useRequesthandler } from '@/hooks/useRequesthandler';
+import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    currentTab: 0,
+    someVariable: false,
 };
 
 export const profileSlice = createSlice({
     name: "profile",
     initialState,
     reducers: {
-        profileCurrentTabUpdated: (state, action) => {
-            state.currentTab = action.payload;
-        },
+        someVariableUpdated: (state) => {
+            state.someVariable = true;
+        }
     },
 });
 
 export const {
-    profileCurrentTabUpdated,
+    someVariableUpdated
 } = profileSlice.actions;
 
 export default profileSlice;
 
-export const profileCurrentTab = (state) => state.profile.currentTab;
+

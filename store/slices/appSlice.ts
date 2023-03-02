@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { useRequesthandler } from '@/hooks/useRequesthandler';
 import { userApi } from "../services/user";
-import { User, Family } from "../types";
+import { User } from "../types";
 
 export const userLogOut = createAsyncThunk(
     "app/userLogOut",
@@ -23,18 +23,9 @@ const intialUser: User = {
     email: '',
 };
 
-const initalFamily: Family = {
-    user: 0,
-    name: '',
-    description: '',
-    status: 0,
-    members: [],
-};
-
 const initialState = {
     isLoggedIn: false,
     currentUser: intialUser,
-    family: initalFamily,
 };
 
 export const appSlice = createSlice({

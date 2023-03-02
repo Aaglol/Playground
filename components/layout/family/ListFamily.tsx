@@ -1,28 +1,22 @@
 import { Family } from "@/store/types";
+import { useSelector } from "react-redux";
+import { storeSelectedFamily, storeAvaiableFamilys } from "@/store/slices/familySlice";
 
 export const ListFamily = () => {
-    const selectedFamily: Family = {
-        user: 1,
-        name: 'Familien Lavoll',
-        description: 'Kult right',
-        status: 1,
-        members: [{
-            firstname: 'Robin',
-            lastname: 'Lavoll',
-            age: '02.24.1994',
-            permission: 1,
-        },
-        {
-            firstname: 'Jasmin',
-            lastname: 'Lavoll',
-            age: '11.26.1996',
-            permission: 1,
-        }]
-    };
+    
+    const selectedFamily = useSelector(storeSelectedFamily);
+    const familys = useSelector(storeAvaiableFamilys);
 
     const SelectFamily = () => (
         <div>
             Velg familie
+
+            {familys.map((familie, key) => (
+                <div className="flex" key={key}>
+                    <div>{familie.name}</div>
+                    <div>Velg</div>
+                </div>
+            ))}
         </div>
     );
     
@@ -33,11 +27,7 @@ export const ListFamily = () => {
     }
     
     const Family = () => (
-        <div className="container">
-            <div className="container-title flex">
-                {selectedFamily.name} <div className="ml-auto">{selectedFamily.status === 1 ? 'Aktiv' : 'Deaktivert'}</div>
-            </div>
-            <hr />
+        <div className="container-body">
             <div className="container-body mt-20">
                 Medlemmer
                 <div className="container-box">
@@ -64,9 +54,5 @@ export const ListFamily = () => {
         </div>
     );
 
-    return (
-        <div className="container-title">
-            {selectedFamily ? <Family /> : <SelectFamily />} 
-        </div>
-    )
+    return selectedFamily.name !== '' ? <Family /> : <SelectFamily />;
 }

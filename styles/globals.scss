@@ -6,12 +6,20 @@
     margin-bottom: 20px;
 }
 
+.mb-30 {
+    margin-bottom: 30px;
+}
+
 .mt-10 {
     margin-top: 10px;
 }
 
 .mt-20 {
     margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
 }
 
 .ml-auto {
@@ -101,6 +109,10 @@
 
 .flex {
     display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
 }
 
 .justify-content-center {

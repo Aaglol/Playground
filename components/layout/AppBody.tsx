@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useIsLoggedInQuery } from "@/store/services/user";
 import { handleNavigationCheck } from "@/utils/helpers/routes";
 
-export const AppBody = ({page = '', children}) => {
+export const AppBody = ({page = '', className = '', children}) => {
     const { data, isLoading, isFetching, isSuccess } = useIsLoggedInQuery({
         pollingInterval: 30,
         refetchOnMountOrArgChange: true,
@@ -31,7 +31,7 @@ export const AppBody = ({page = '', children}) => {
                 <main className="App">
                     <AppHeader />
 
-                    <div className="app-body">
+                    <div className={`app-body ${className}`}>
                         {!isFetching && children}
                     </div>
                 </main>

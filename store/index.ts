@@ -5,6 +5,7 @@ import { CommunicationApi } from './services/api';
 import thunkMiddleware from 'redux-thunk';
 import { appSlice } from './slices/appSlice';
 import { profileSlice } from './slices/profileSlice';
+import { familySlice } from "./slices/familySlice";
 
 const customMiddleware = [thunkMiddleware, CommunicationApi.middleware];
 
@@ -14,6 +15,7 @@ if (process.env.NODE_ENV === "development") {
 
 const reducers = combineReducers({
     app: appSlice.reducer,
+    family: familySlice.reducer,
     profile: profileSlice.reducer,
     api: CommunicationApi.reducer,
 });

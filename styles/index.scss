@@ -9,6 +9,7 @@ $color-dark: #0D0D0D;
 @import "./components/Button.scss";
 @import "./components/TabHeader.scss";
 @import "./components/Dropdown.scss";
+@import "./components/Icon.scss";
 @import "./layout/AppHeader.scss";
 
 .app, .loading-page {
@@ -31,13 +32,14 @@ $color-dark: #0D0D0D;
         border-radius: 12px;
     }
 
-    .container-title {
-        margin: 0 auto;
+    &.container-title, .container-title {
+        margin-left: auto;
+        margin-right: auto;
         font-size: 24px;
         width: 100%;
     }
 
-    .container-content {
+    &.container-content, .container-content {
         margin-top: 20px;
 
         &.two-sided {
@@ -65,4 +67,8 @@ hr {
 
 .app-body {
     padding: 0px 30px;
+
+    &.flex {
+        padding: 40px 30px;
+    }
 }
