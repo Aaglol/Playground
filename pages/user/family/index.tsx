@@ -25,7 +25,7 @@ export const FamilyPage = () => {
     const familys = useSelector(storeAvaiableFamilys);
     const selectedFamily = useSelector(storeSelectedFamily);
 
-    if (!isLoading || isFetching) {
+    if (isLoading || isFetching) {
         return <Loader />;
     }
 
