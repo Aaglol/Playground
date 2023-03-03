@@ -1,22 +1,37 @@
-import { Family } from "@/store/types";
 import { useSelector } from "react-redux";
 import { storeSelectedFamily, storeAvaiableFamilys } from "@/store/slices/familySlice";
 
 export const ListFamily = () => {
     
     const selectedFamily = useSelector(storeSelectedFamily);
-    const familys = useSelector(storeAvaiableFamilys);
-
+    const availableFamilies = useSelector(storeAvaiableFamilys);
+    
     const SelectFamily = () => (
         <div>
-            Velg familie
+            <div className="container-title">
+                Velg familie
+            </div>
 
-            {familys.map((familie, key) => (
-                <div className="flex" key={key}>
-                    <div>{familie.name}</div>
-                    <div>Velg</div>
-                </div>
-            ))}
+            <table className="table fixed-layout mt-20">
+                <thead>
+                    <tr>
+                        <th className="text-left">Navn</th>
+                        <th className="text-center">Beskrivelse</th>
+                        <th className="text-right">Handling</th>
+                    </tr>
+                </thead>
+            </table>
+            <table className="table fixed-layout container-box">
+                <tbody>
+                    {availableFamilies.map((familie, key) => (
+                        <tr key={key}>
+                            <td className="text-left">{familie.family_name}</td>
+                            <td className="text-center">{familie.family_description}</td>
+                            <td className="text-right">Velg</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
     

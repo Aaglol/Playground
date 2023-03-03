@@ -103,10 +103,6 @@
     background-color: $color-secondary;
 }
 
-.text-center {
-    text-align: center;
-}
-
 .flex {
     display: flex;
 }
@@ -131,6 +127,14 @@
     border-left: 1px solid $color-secondary;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .text-right {
     text-align: right;
+}
+
+.text-left {
+    text-align: left;
 }

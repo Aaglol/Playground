@@ -10,6 +10,7 @@ $color-dark: #0D0D0D;
 @import "./components/TabHeader.scss";
 @import "./components/Dropdown.scss";
 @import "./components/Icon.scss";
+@import "./components/Table.scss";
 @import "./layout/AppHeader.scss";
 
 .app, .loading-page {
@@ -41,19 +42,18 @@ $color-dark: #0D0D0D;
 
     &.container-content, .container-content {
         margin-top: 20px;
+    }
+    
+    &.two-sided {
+        display: flex;
+    }
+    .container-split {
+        width: 50%;
+    }
 
-        &.two-sided {
-            display: flex;
-        }
-
-        .container-split {
-            width: 50%;
-        }
-
-        .container-box {
-            max-height: 350px;
-            overflow-y: auto;
-        }
+    .container-box {
+        max-height: 350px;
+        overflow-y: auto;
     }
 }
 
