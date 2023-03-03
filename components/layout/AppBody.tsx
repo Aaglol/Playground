@@ -6,8 +6,7 @@ import { handleNavigationCheck } from "@/utils/helpers/routes";
 
 export const AppBody = ({page = '', className = '', children}) => {
     const { data, isLoading, isFetching, isSuccess } = useIsLoggedInQuery({
-        pollingInterval: 30,
-        refetchOnMountOrArgChange: true,
+        refetchOnMountOrArgChange: 30,
         skip: false,
     });
 
