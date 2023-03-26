@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { storeSelectedFamily, storeAvaiableFamilys } from "@/store/slices/familySlice";
+import { Family, FamilyMember } from "@/store/types";
 
 export const ListFamily = () => {
     
@@ -23,10 +24,10 @@ export const ListFamily = () => {
             </table>
             <table className="table fixed-layout container-box">
                 <tbody>
-                    {availableFamilies.map((familie, key) => (
+                    {availableFamilies.map((family: Family, key: number) => (
                         <tr key={key}>
-                            <td className="text-left">{familie.family_name}</td>
-                            <td className="text-center">{familie.family_description}</td>
+                            <td className="text-left">{family.family_name}</td>
+                            <td className="text-center">{family.family_description}</td>
                             <td className="text-right">Velg</td>
                         </tr>
                     ))}
@@ -46,7 +47,7 @@ export const ListFamily = () => {
             <div className="container-body mt-20">
                 Medlemmer
                 <div className="container-box">
-                    {selectedFamily.members.map((member, key) => (
+                    {selectedFamily.members.map((member: FamilyMember, key: number) => (
                         <div key={key} className="container-box-item">
                             <div className="container-content two-sided">
                                 <div className="container-split flex">
@@ -69,5 +70,5 @@ export const ListFamily = () => {
         </div>
     );
 
-    return selectedFamily.name !== '' ? <Family /> : <SelectFamily />;
+    return selectedFamily.family_name !== '' ? <Family /> : <SelectFamily />;
 }

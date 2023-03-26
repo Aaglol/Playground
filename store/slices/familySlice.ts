@@ -5,8 +5,8 @@ import { familyApi } from "../services/family";
 
 const initalFamily: Family = {
     user: 0,
-    name: '',
-    description: '',
+    family_name: '',
+    family_description: '',
     status: 0,
     members: []
 };

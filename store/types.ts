@@ -13,8 +13,8 @@ export interface FamilyMember {
 
 export interface Family {
     user: number
-    name: string
-    description: string
+    family_name: string
+    family_description: string
     status: number
     members: Array<FamilyMember>
 }
