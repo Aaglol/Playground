@@ -30,6 +30,7 @@ export default function Login() {
         name: 'password',
         type: 'password',
         attribute: 'current-password',
+        className: '',
     }];
 
     const inputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {

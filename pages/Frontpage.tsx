@@ -17,3 +17,5 @@ export function Frontpage() {
         </AppBody>
     );
 };
+
+export default Frontpage;
