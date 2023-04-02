@@ -2,7 +2,7 @@ import { AppBody } from '@/components/layout/AppBody';
 
 export const PAGE_FRONTPAGE = 'PAGE_FRONTPAGE';
 
-export default function Frontpage() {
+export function Frontpage() {
 
     return (
         <AppBody page={PAGE_FRONTPAGE}>
