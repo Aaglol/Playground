@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const useRequesthandler = async (URL: string, PATH: string, type: string, payload: object = {}) => {
-    const baseURL = 'http://server.robin-dev.no/'
+    const baseURL = 'https://server.robin-dev.no/'
     
     const requestHandler = axios.create({
         withCredentials: true,

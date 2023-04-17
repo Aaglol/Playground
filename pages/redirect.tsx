@@ -9,7 +9,7 @@ export default function Redirect() {
     useEffect(() => {
         setTimeout(() => {
             Router.push('/frontpage');
-        }, 500);
+        }, 1500);
     }, []);
 
     return (

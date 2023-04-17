@@ -11,7 +11,7 @@ export const AppBody = ({page = '', className = '', children}) => {
     });
 
     useEffect(() => {
-        console.log('query data: ', data, isFetching, isLoading);
+        console.log('query data: ', data, isFetching, isLoading, isSuccess);
         if (!isFetching && !isSuccess) {
             console.log('no success: ', isFetching, isSuccess);
             handleNavigationCheck();
