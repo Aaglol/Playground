@@ -8,6 +8,7 @@ export default function Redirect() {
 
     useEffect(() => {
         setTimeout(() => {
+            console.log('redir');
             Router.push('/frontpage');
         }, 1500);
     }, []);

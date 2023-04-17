@@ -18,7 +18,7 @@ export const Dropdown = (props: {buttonText: string, items: Array<DropdownItem>,
                         <Link 
                             key={key}
                             href={item.href}
-                            className={`dropdown-item ${props.isActive === item.href}`}
+                            className={`dropdown-item ${props.isActive === item.href ? 'active' : ''}`}
                         >
                             {item.name}
                         </Link>
