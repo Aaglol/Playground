@@ -5,10 +5,10 @@ import Router from 'next/router';
 export const PAGE_REDIRECT = 'PAGE_REDIRECT';
 
 export default function Redirect() {
-
+    console.log('redir');
     useEffect(() => {
         setTimeout(() => {
-            console.log('redir');
+           
             Router.push('/frontpage');
         }, 1500);
     }, []);

@@ -8,10 +8,10 @@ export function Frontpage() {
         <AppBody page={PAGE_FRONTPAGE}>
             <div className="container"> 
                 <div className="container-title">
-                    Playground
+                    Kul innholdsrik tittel
                 </div>
                 <div className="mt-20 text-center">
-                    En forside historie
+                    Etterfulgt av noen smarte ord
                 </div>
             </div>
         </AppBody>
