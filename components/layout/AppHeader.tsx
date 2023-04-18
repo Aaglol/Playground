@@ -14,6 +14,10 @@ export const AppHeader = () => {
     
     const dropdownItems: Array<Item> = [
         {
+            name: 'Profile',
+            href: '/user/profile',
+        },
+        {
             name: 'Familie',
             href: '/user/family',
         },
