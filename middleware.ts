@@ -7,7 +7,8 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
     
     if (!request.cookies.has('jwt')) {
-        return NextResponse.redirect(new URL('/', request.url))    
+      console.log('request', request.cookies);
+        return NextResponse.redirect(new URL('/redirect', request.url))    
     }
 
     return NextResponse.next()
