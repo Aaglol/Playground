@@ -11,6 +11,7 @@ export function handleNavigationCheck() {
     const isLoggedIn = state?.app?.isLoggedIn;
 
     if (currentUrl.includes('user') && !isLoggedIn) {
+        console.log('404??');
         return router.push('/404');
     }
 

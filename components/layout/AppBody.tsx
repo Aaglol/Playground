@@ -16,7 +16,9 @@ export const AppBody = ({page = '', className = '', children}) => {
             console.log('no success: ', isFetching, isSuccess);
             handleNavigationCheck();
         }
-    }, [isFetching, isLoading, isSuccess]);
+    }, [isFetching, isLoading, isSuccess, data]);
+
+    console.log('loading: ', page);
 
     return (
         <div className="app">
