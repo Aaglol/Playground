@@ -6,12 +6,14 @@ import type { NextRequest } from 'next/server';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
     
-    if (request.url === '/user/logout') {
+    console.log('request ---> ', request);
+
+    if (request.pathname === '/user/logout') {
         return NextResponse.next()
     }
     
     if (!request.cookies.has('jwt')) {
-        console.warn('request', request.cookies);
+        console.warn('request cookies', request.cookies);
         return NextResponse.redirect(new URL('/redirect', request.url))    
     }
 
