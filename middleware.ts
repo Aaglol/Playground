@@ -6,9 +6,8 @@ import type { NextRequest } from 'next/server';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
     
-    console.log('request ---> ', request);
-
-    if (request.pathname === '/user/logout') {
+    if (request.nextUrl.pathname === '/user/logout') {
+        console.log('request pathname ---> ', request.nextUrl.pathname);
         return NextResponse.next()
     }
     
