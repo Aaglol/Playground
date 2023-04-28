@@ -2,6 +2,13 @@ import { CommunicationApi } from './api';
 
 export const userApi = CommunicationApi.injectEndpoints({
     endpoints: (build) => ({
+        register: build.mutation({
+            query: (body) => ({
+                url: '/user/create',
+                method: 'POST',
+                body,
+            }),
+        }),
         login: build.mutation({
             query: (body) => ({
                 url: '/user/login',
@@ -27,8 +34,9 @@ export const {
     useLoginMutation,
     useIsLoggedInQuery,
     useLogoutMutation,
+    useRegisterMutation,
 } = userApi;
 
 export const {
-    endpoints: { login, isLoggedIn, logout },
+    endpoints: { login, isLoggedIn, logout, register },
 } = userApi;

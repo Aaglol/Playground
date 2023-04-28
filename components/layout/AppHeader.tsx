@@ -60,12 +60,21 @@ export const AppHeader = () => {
                             Om
                         </Link>
                     </div>
-                    {loggedIn && (
+                    {loggedIn ? (
                         <Dropdown 
-                            buttonText={loggedIn ? currentUser.username : 'Logg inn'}
+                            buttonText={currentUser.username}
                             items={dropdownItems}
                             isActive={currentUrl}
                         />
+                    ) : (
+                        <div>
+                            <Link
+                                className={currentUrl === '/profile' ? ' active' : ''} 
+                                href="/user/profile"
+                            >
+                                Logg inn
+                            </Link>
+                        </div>
                     )}
                 </div>
             </div>

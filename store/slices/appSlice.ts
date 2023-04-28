@@ -1,21 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import { useRequesthandler } from '@/hooks/useRequesthandler';
 import { userApi } from "../services/user";
 import { User } from "../types";
-
-export const userLogOut = createAsyncThunk(
-    "app/userLogOut",
-    async () => {
-        const response = await useRequesthandler('http://localhost:8081/', 'user/logout', 'POST', {}).catch((error) => {
-            console.warn('oh no');
-        });
-
-        if (response.status === 200) {
-            return response.data;
-        }
-    },
-);
 
 const intialUser: User = {
     id: 0,
@@ -33,6 +19,10 @@ export const appSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder.addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
+            state.currentUser = action.payload.data;
+            state.isLoggedIn = true;
+        }); 
+        builder.addMatcher(userApi.endpoints.register.matchFulfilled, (state, action) => {
             state.currentUser = action.payload.data;
             state.isLoggedIn = true;
         }); 

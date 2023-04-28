@@ -1,7 +1,6 @@
 import {FormGroup} from '@/components/FormGroup';
 import { useState } from 'react';
 
-import { AppBody } from '@/components/layout/AppBody';
 import { Button } from '@/components/Button';
 import { useLoginMutation } from '@/store/services/user';
 import { FormRegisterDataTypes } from '@/store/types';
@@ -40,30 +39,26 @@ export default function Login() {
     };
 
     return (
-        <AppBody page={PAGE_LOGIN}>
-            <div className="container">
-                <form className="form bg-dark" onSubmit={(e) => handleSubmitRegister(e)}>
-                    <div className="form-title">
-                        Logg inn
-                    </div>
-                    <hr className="mb-20" />
-                    {formInputs.map((input, key) => (
-                        <FormGroup
-                            data={input}
-                            key={key}
-                            inputOnChange={inputOnChange}
-                        />
-                    ))}
-                    
-                    <div className="form-footer">
-                        <Button
-                            title="Submit"
-                            onClick={handleSubmitRegister}
-                            type='success'
-                        />
-                    </div>
-                </form>
+        <form className="form bg-dark" onSubmit={(e) => handleSubmitRegister(e)}>
+            <div className="form-title">
+                Logg inn
             </div>
-        </AppBody>
+            <hr className="mb-20" />
+            {formInputs.map((input, key) => (
+                <FormGroup
+                    data={input}
+                    key={key}
+                    inputOnChange={inputOnChange}
+                />
+            ))}
+            
+            <div className="form-footer">
+                <Button
+                    title="Submit"
+                    onClick={handleSubmitRegister}
+                    type='success'
+                />
+            </div>
+        </form>
     );
 };

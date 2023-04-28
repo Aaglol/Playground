@@ -13,6 +13,22 @@ $color-dark: #0D0D0D;
 @import "./components/Table.scss";
 @import "./layout/AppHeader.scss";
 
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+  
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .app, .loading-page {
     padding: 20px 40px;
     width: 100%;
