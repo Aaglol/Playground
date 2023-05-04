@@ -23,16 +23,20 @@ export const userApi = CommunicationApi.injectEndpoints({
                 body,
             }),
         }),
-        isLoggedIn: build.query({
-            query: () => '/user/isloggedin',
-        })
+        isLoggedIn: build.mutation({
+            query: (body) => ({
+                url: '/user/isloggedin',
+                method: 'GET',
+                body,
+            }),
+        }),
     }),
     overrideExisting: false,
 });
 
 export const {
     useLoginMutation,
-    useIsLoggedInQuery,
+    useIsLoggedInMutation,
     useLogoutMutation,
     useRegisterMutation,
 } = userApi;

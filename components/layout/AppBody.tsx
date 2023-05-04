@@ -1,22 +1,16 @@
 import { AppHeader } from "./AppHeader"
 import Head from "next/head";
 import { useEffect } from "react";
-import { useIsLoggedInQuery } from "@/store/services/user";
+import { useIsLoggedInMutation } from "@/store/services/user";
 import { handleNavigationCheck } from "@/utils/helpers/routes";
 
 export const AppBody = ({page = '', className = '', children}) => {
-    const { data, isLoading, isFetching, isSuccess } = useIsLoggedInQuery({
-        refetchOnMountOrArgChange: 30,
-        skip: false,
-    });
+    const [handleIsLoggedIn] = useIsLoggedInMutation();
 
     useEffect(() => {
-        console.log('query data: ', data, isFetching, isLoading, isSuccess);
-        if (data && !isFetching && !isSuccess) {
-            console.log('no success: ', isFetching, isSuccess);
-            handleNavigationCheck();
-        }
-    }, [isFetching, isLoading, isSuccess, data]);
+        const doAction = async () => await handleIsLoggedIn({}).unwrap();
+        doAction();
+    }, [handleIsLoggedIn]);
 
     console.log('loading: ', page);
 
