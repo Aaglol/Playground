@@ -10,7 +10,7 @@ export default function About() {
                 <div className="container-title">
                     Om meg
                 </div>
-                <div className="container">
+                <div className="container text-center">
                     29år gammel. 
                     <br />
                     Utvikler i form av web, apper og spill
