@@ -27,7 +27,7 @@ export const AppBody = ({page = '', className = '', children}) => {
                     <AppHeader />
 
                     <div className={`app-body ${className}`}>
-                        {!isFetching && children}
+                        {children}
                     </div>
                 </main>
             
